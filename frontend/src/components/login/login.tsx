@@ -2,7 +2,7 @@ import { VisibilityOff, Visibility } from "@mui/icons-material";
 import {
   FormControl,
   InputLabel,
-  Input,
+  
   InputAdornment,
   IconButton,
   OutlinedInput,
@@ -10,17 +10,25 @@ import {
   Stack,
 } from "@mui/material";
 import React from "react";
+import { useDispatch } from "react-redux";
+import {authRequested } from "../../redux/silces/auth.silce";
 
 const Login = () => {
 
   const [showPassword, setShowPassword] = React.useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const dispatch=useDispatch();
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
   };
 
+
+  const handleLogIn=(e:any)=>{
+    e.preventDefault()
+    dispatch(authRequested({userName:"sayan",passWord:"sayan"}))
+  }
 
   return (
     <Stack spacing={2} direction="column">
@@ -59,7 +67,7 @@ const Login = () => {
 
         <Stack spacing={2} direction="row">
       
-      <Button variant="contained">Login</Button>
+      <Button variant="contained" onClick={handleLogIn}>Login</Button>
       <Button variant="contained">Signup</Button>
 
      
