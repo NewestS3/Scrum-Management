@@ -1,22 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { RegisterModule } from './modules/register/register.module';
+import { UserModule } from './modules/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserRegister } from './modules/register/model/user-register';
-
+import { dbconfig } from './config/db.config';
 
 @Module({
-  imports: [RegisterModule,TypeOrmModule.forRoot({
-    type:"mysql",
-    host:"localhost",
-    port:3306,
-    username:"s3",
-    password:"testpassword",
-    database:"scrum_management",
-    entities:[UserRegister],
-    synchronize:true
-  })],
+  imports: [UserModule,
+  TypeOrmModule.forRoot({...dbconfig})
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
