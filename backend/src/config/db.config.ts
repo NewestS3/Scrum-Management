@@ -1,4 +1,5 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { UserEntity } from "src/lib/db/entities/user.entity";
 
 export const dbconfig:TypeOrmModuleOptions = {
   type: 'mysql',
@@ -7,6 +8,6 @@ export const dbconfig:TypeOrmModuleOptions = {
   username: 'scrum_management',
   password: 'reactgod@123',
   database: 'scrum_management',
-  entities: [],
-  synchronize: true,
+  entities: [UserEntity],
+  synchronize: false,
 };

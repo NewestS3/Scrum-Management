@@ -7,7 +7,8 @@ import { dbconfig } from './config/db.config';
 
 @Module({
   imports: [UserModule,
-  TypeOrmModule.forRoot({...dbconfig})
+  TypeOrmModule.forRoot({...dbconfig}),
+  UserModule
   ],
   controllers: [AppController],
   providers: [AppService],
